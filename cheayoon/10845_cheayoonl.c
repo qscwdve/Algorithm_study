@@ -34,6 +34,7 @@ void pop() {
 	else {
 		printf("%d\n", stack[front]);
 		stack[front++];
+		
 	}
 }
 
