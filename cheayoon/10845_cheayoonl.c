@@ -21,6 +21,7 @@ int IsEmpty() {
 
 
 
+
 //PUSH
 void push(int value) {
 		stack[++rear] = value;
