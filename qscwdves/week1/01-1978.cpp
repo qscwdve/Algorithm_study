@@ -1,7 +1,7 @@
 #include <stdio.h>
 #pragma warning (disable:4996)
 
-// ¼Ò¼ö Ã£±â
+// ì†Œìˆ˜ ì°¾ê¸°
 int main() {
 	int num, temp, check = 0, k;
 	scanf("%d", &num);
@@ -12,7 +12,7 @@ int main() {
 			for (k = 3; k < temp; k = k + 2) {
 				if (temp % k == 0) break;
 			}
-			if (k >= temp) check++;    // 0ÀÌ ¾Æ´Ï¸é ¼Ò¼ö´Ù.
+			if (k >= temp) check++;    // 0ì´ ì•„ë‹ˆë©´ ì†Œìˆ˜ë‹¤.
 		}
 		else if (temp == 2) check++;
 	}
