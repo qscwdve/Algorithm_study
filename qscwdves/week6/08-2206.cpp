@@ -8,6 +8,7 @@ struct node {
 	int x = 0, y = 0;
 	int count = 1, wall = 0;
 };
+
 int main() {
 	int N, M;
 	char ch;
