@@ -83,20 +83,17 @@ int main() {
 		//printf("%d\n", h);
 		if (hu != 0) counts = 0;
 		if (h == 0) break;	//치즈가 녹은 부분이 없다면 종료시켜줍니다.
-		
 
 
 
 		day++;
 
-		
 	}
 
 
 
 	printf("%d\n", day);
 	printf("%d", counts);
-	
 
 	getchar();
 	getchar();

@@ -13,7 +13,6 @@ using namespace std;
 int num, h, u;
 
 
-
 int main() {
 	vector<pair<int, int>> p;
 
@@ -22,15 +21,13 @@ int main() {
 	scanf("%d", &num);
 	for (int i = 0; i < num; i++) {
 		scanf("%d %d", &h, &u);
-		p.push_back(make_pair(h, u));
+		p.push_back(make_pair(u, h));
 
 	}
-
-	sort(p.begin(), p.end()); 
-
+	sort(p.begin(), p.end());
 
 	for (int i = 0; i < num; i++) {
-		printf("%d %d\n", p[i].first, p[i].second);
+		printf("%d %d\n", p[i].second, p[i].first);
 
 	}
 
