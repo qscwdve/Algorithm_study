@@ -29,6 +29,7 @@ int main() {
 		h[i] = i;
 	}
 
+	
 
 	for (int i = 2; i < 1000000; i++) {
 		if (h[i] == 0) {
