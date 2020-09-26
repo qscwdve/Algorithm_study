@@ -7,6 +7,7 @@ int number;
 int prime_number(int i) {
 	if (i < 2) return 0;
 	else {
+		
 		for (int j = i - 1; j != 1; j--) {
 			if (i % j == 0) {
 				return 0;
