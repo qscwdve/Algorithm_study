@@ -10,29 +10,37 @@
 using namespace std;
 
 
-int num, h, u;
 
+
+
+int num, nu;
+string h;
 
 
 int main() {
-	vector<pair<int, int>> p;
-
-
+	vector <string> sv;
+	string temp;
 
 	scanf("%d", &num);
 	for (int i = 0; i < num; i++) {
-		scanf("%d %d", &h, &u);
-		p.push_back(make_pair(h, u));
+		scanf("%s", h);
+		sv.push_back(h);
+	}
+	sort(sv.begin(), sv.end());	//정렬하는 부분
 
+
+
+
+
+	for (int j = 0; j < sv.size(); j++) {
+
+		h = sv[j];
+
+
+		printf("%s\n", h);
 	}
 
-	sort(p.begin(), p.end()); 
 
-
-	for (int i = 0; i < num; i++) {
-		printf("%d %d\n", p[i].first, p[i].second);
-
-	}
 
 	getchar();
 	getchar();

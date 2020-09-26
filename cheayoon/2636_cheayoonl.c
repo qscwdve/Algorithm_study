@@ -86,9 +86,7 @@ int main() {
 
 
 
-
 		day++;
-
 
 	}
 
@@ -96,7 +94,6 @@ int main() {
 
 	printf("%d\n", day);
 	printf("%d", counts);
-
 
 	getchar();
 	getchar();
