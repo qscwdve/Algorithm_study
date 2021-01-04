@@ -1,70 +1,66 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
-
+#include <vector>
+#define DMAX  4000001
 //연속된 소수의 합으로 나타낼 수 있는 자연수
 
-//prime numbers
-int prime[4000000];
-//setting prime
-int makePrime(int, int);
-int setPrime(int);
-int listSum(int, int);
+//입력 값까지의 소수들을 구한다.
+//구한 소수들을 길이를 이용하여 합을 구하고 슬라이드하여 합을 구하고 비교한다.
 
+using namespace std;
+
+//prime number
+char prime[4000001];
+vector<int> v;
+//setting prime
+void Eratos();
 
 int main(){
     int dest;
     int result, length;
-    int temp = 0;
+    int start, end;
+    int sum = 0;
+    int count = 0;
+    sum = 0;
+    start = 0;
+    end = 0;
+    result = 0;
+    v.clear();
     
     scanf("%d", &dest);
 
-    length = setPrime(dest);
-    temp = length;
-    while(temp-- > 0){
-        for(int i = 0; i+temp < length; i++){
-            if(dest == listSum(i, i+temp)){
-                result++;
-            }
+    Eratos();
+
+    length = v.size();
+    while(end <= length && v[end] <= dest){
+        printf("start %d, end %d, dest %d, sum %d\n", start, end, dest, sum);
+        if(sum < dest){
+            sum += v[end++];
+            continue;
         }
+        else if(sum == dest){
+            result++;
+        }
+        else{
+            sum -= v[start++];    
+        }
+        
     }
-    printf("%d", result);
+    printf("%d\n",  result);
     return 0;
 }
-int setPrime(int n){
-    int length = 0;
-    //printf("setPrime %d \n", n);
-    if(n<2) return 0;
 
-    for(int i = 2 ; i <= n; i++){
-        length = makePrime(i,length);
-    }
-
-    return length;
-}
-
-int makePrime(int n, int length){
-    //printf("make prime %d %d \n", n , length);
-    if(n < 2);
-    else if(n == 2){
-        prime[length++] = 2;
-    }
-    else{
-        for(int i = 2 ; i <= sqrt(n); i++){
-            if(n%i == 0) return length;// not prime
+void Eratos(){
+    prime[0] = 1;
+    prime[1] = 1;
+    for(int i = 2; i <= DMAX; i++){
+        if(prime[i] == 1){
+            continue;
         }
-        prime[length++] = n; // is prime
-        //printf("%d \n",n);
+        v.push_back(i);
+        for(int j = i + i; j <= DMAX; j+=i){
+            prime[j] = 1;
+        }
     }
-    return length;
-}
-
-int listSum(int start, int end){
-    //printf("List sum %d %d\n",prime[start], prime[end]);
-    //printf("start: %d, end: %d\n", start, end);
-    int sum = 0;
-    for(int i = start; i <= end ; i++){
-        sum+= prime[i];
-    }
-    return sum;
 }
