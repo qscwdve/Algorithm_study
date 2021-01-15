@@ -22,7 +22,7 @@ int main(){
     }
     stable_sort(v.begin(),v.end(),compare);
 
-    for(int i = 0; i<v.size();i++)printf("[%d %d]\n",v[i].first, v[i].second);
+    //for(int i = 0; i<v.size();i++)printf("[%d %d]\n",v[i].first, v[i].second);
     before = 0;
     result++;
     for(int i = 1 ; i<v.size(); i++){
