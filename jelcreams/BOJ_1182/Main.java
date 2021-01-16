@@ -23,7 +23,6 @@ public class Main{
     static void recursion(int start, int end, int sum){
         for(int i = start; i<end; i++){
             if(sum+numbers[i] == target){
-                System.out.println(start +" "+end+" "+sum);
                 result++;
             }
             recursion(i+1, end, sum+numbers[i]);
