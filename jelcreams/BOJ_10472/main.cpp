@@ -1,95 +1,85 @@
 #include <iostream>
 #include <queue>
-
+#include <memory.h>
+#include <stdlib.h>
 using namespace std;
+
 typedef struct node{
-    int cur;
-    int x,y;
+    bool check[9];
     int map[3][3];
 }NODE;
-int dirX[4] = {1,-1,0,0};
-int dirY[4] = {0,0,1,-1};
+
 int baseMap[3][3];
+int X[4] = {1,-1,0,0};
+int Y[4] = {0,0,1,-1};
 void solution();
-bool check(NODE);
+bool check(NODE n);
 int main(){
     int testCase;
-    char tmp;
+    char temp;
     scanf("%d",&testCase);
-    while(testCase-->0){
+    while(testCase-- > 0){
         for(int i = 0; i < 3; i++){
             for(int j = 0; j < 3; j++){
-                scanf(" %c",&tmp);
-                if(tmp =='*') baseMap[i][j] = 0;
-                else baseMap[i][j] = 1;
+                scanf(" %c", &temp);
+                if(temp == '*') baseMap[i][j] = 1;
+                else baseMap[i][j] = 0;
             }
         }
         solution();
-
     }
     return 0;
 }
+
+
 void solution(){
+    NODE cur;
     queue<NODE> q;
-    NODE nod;
-    int tmpX, tmpY;
-    int x, y;
-    nod.cur = 0;
-    nod.x = -1;
-    nod.y = -1;
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            nod.map[i][j] = baseMap[i][j];
-        }
-    }
-    q.push(nod);
+    int dirx, diry;
+    int count = 0;
+    memset(&cur,0,sizeof(NODE));
+    memcpy(cur.map,baseMap,sizeof(baseMap));
+    q.push(cur);
     while(!q.empty()){
-        nod = q.front();
-        x = nod.x;
-        y = nod.y;
+        cur = q.front();
         q.pop();
-        if(check(nod)){
-            printf("%d\n", nod.cur);
+        if(check(cur)){
+            for(int i = 0 ; i < 9; i++){
+                if(cur.check[i]) count++;
+            }
+            printf("%d\n", count);
             return;
         }
-        for(int i = 0; i < 3; i++){
-            for(int j = 0; j < 3; j++){
-                if(nod.x == j && nod.y == i)continue;
-                nod.map[i][j] = !nod.map[i][j];
-                for(int k = 0; k < 4; k++){
-                    tmpX = j+dirX[k];
-                    tmpY = i+dirY[k];
-                    if(tmpX >= 0 && tmpY >= 0 && tmpX < 3 && tmpY < 3){
-                        nod.map[tmpY][tmpX] = !nod.map[tmpY][tmpX];
+        for(int i = 0 ; i < 9; i++){
+            if(!cur.check[i]){
+                cur.check[i] = true;
+                cur.map[i/3][i%3] = !cur.map[i/3][i%3];
+                for(int j = 0; j < 4; j++){
+                    dirx = i%3 + X[j];
+                    diry = i/3 + Y[j];
+                    if(dirx >=0 && diry >= 0 && dirx < 3 && diry < 3){
+                        cur.map[diry][dirx] = !cur.map[diry][dirx];
                     }
                 }
-                nod.cur+=1;
-                nod.x = j;
-                nod.y = i;
+                q.push(cur);
 
-                q.push(nod);
-
-                nod.cur-=1;
-                nod.x = x;
-                nod.y = y;
-                nod.map[i][j] = !nod.map[i][j];
-                for(int k = 0; k < 4; k++){
-                    tmpX = j+dirX[k];
-                    tmpY = i+dirY[k];
-                    if(tmpX >= 0 && tmpY >= 0 && tmpX < 3 && tmpY < 3){
-                        nod.map[tmpY][tmpX] = !nod.map[tmpY][tmpX];
+                cur.check[i] = false;
+                cur.map[i/3][i%3] = !cur.map[i/3][i%3];
+                for(int j = 0; j < 4; j++){
+                    dirx = i%3 + X[j];
+                    diry = i/3 + Y[j];
+                    if(dirx >=0 && diry >= 0 && dirx < 3 && diry < 3){
+                        cur.map[diry][dirx] = !cur.map[diry][dirx];
                     }
                 }
             }
         }
-        
     }
-
 }
 bool check(NODE n){
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
-            if(n.map[i][j] == 0) return false;
+            if(n.map[i][j] == 1)return  false;
         }
     }
     return true;
