@@ -1,0 +1,49 @@
+#include <iostream>
+#include <stack>
+#include <vector>
+#include <algorithm>
+#include <stdio.h>
+#include <queue>
+#include <algorithm>
+#include <tuple>
+#include <time.h>
+#include <math.h>
+#include <cmath>
+#include <string>
+#include <cstdlib>
+
+#pragma warning (disable:4996)
+
+using namespace std;
+
+int T, results = 1;
+
+struct STU {
+	int weight,	//몸무게
+		tall;	//키
+};
+
+int main() {
+
+	scanf("%d", &T);
+	vector<STU> v(T);
+
+
+	for (int i = 0; i < T; i++) {
+		cin >> v[i].weight;
+		cin >> v[i].tall;
+	}
+
+	for (int i = 0; i < T; i++) {
+		results = 1;
+		for (int j = 0; j < T; j++) {
+			if (v[i].weight < v[j].weight && v[i].tall < v[j].tall) {
+				results++;
+			}
+		}
+		printf("%d ", results);
+	}
+
+
+	return 0;
+}
